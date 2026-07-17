@@ -42,11 +42,16 @@ export default function Home() {
     }
   };
 
-  const handleScan = useCallback(async (scannedId) => {
+  const handleScan = useCallback(async (scannedText) => {
     if (loading || !scannerActive) return;
 
     setLoading(true);
     setScannerActive(false);
+
+    // Extract the ticket ID from the multi-line QR payload
+    // Matches the line starting with "ID: " and captures the rest of the line
+    const match = scannedText.match(/^ID:\s*(.+)$/m);
+    const scannedId = match ? match[1].trim() : scannedText.trim();
 
     try {
       const { data: user, error: fetchError } = await supabase
