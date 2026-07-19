@@ -6,6 +6,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Event Check-In Scanner',
   description: 'QR Code verification scanner using Supabase',
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({ children }) {
